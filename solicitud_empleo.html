@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Empleo | Cases Language Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos y complementarios para el Formulario Premium */
+        .form-container {
+            max-width: 800px;
+            margin: 60px auto;
+            background: var(--color-surface-base);
+            backdrop-filter: blur(var(--glass-backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--glass-backdrop-blur));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: var(--card-box-shadow);
+            border-radius: var(--border-radius-lg);
+            padding: 40px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid rgba(90, 156, 155, 0.15);
+            padding-bottom: 20px;
+        }
+
+        .form-header h1 {
+            color: var(--color-secondary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+        }
+
+        .form-section-title {
+            font-size: 1.25rem;
+            color: var(--color-primary-teal);
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(90, 156, 155, 0.2);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-text-dark);
+        }
+
+        /* Cajas de texto rellenables con transiciones premium */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--color-text-dark);
+            transition: all var(--transition-speed);
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--color-primary-teal);
+            box-shadow: 0 0 0 4px rgba(90, 156, 155, 0.15);
+            background: #ffffff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-actions {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn-submit {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* Estilo para el fondo decorativo */
+        .site-backdrop-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vw;
+            height: 85vh;
+            max-width: 1080px;
+            max-height: 1080px;
+            background-image: url('site_logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.05;
+            filter: blur(1px);
+            pointer-events: none;
+            z-index: -2;
+        }
+    </style>
+</head>
+<body id="main-body">
+    <div class="site-backdrop-bg"></div>
+
+    <header class="site-header">
+        <div class="logo-and-branding">
+            <a href="index.html" style="text-decoration: none;">
+                <img src="site_logo.png" alt="Cases Language Services Logo" class="main-logo">
+            </a>
+            <p class="motto">
+                Conectando culturas y negocios a través del lenguaje. Su socio lingüístico en Paraguay.
+            </p>
+        </div>
+        <a href="index.html" class="cta-button" style="padding: 10px 25px; font-size: 0.9rem;">Volver al Inicio</a>
+    </header>
+
+    <main class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>Solicitud de Empleo</h1>
+                <p>Únase a nuestro equipo de lingüistas y profesionales en Paraguay y el mundo.</p>
+            </div>
+
+            <form action="#" method="POST" id="job-application-form">
+                
+                <fieldset class="form-section" style="border: none; padding: 0; margin: 0;">
+                    <legend class="form-section-title">👤 Información Personal</legend>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="first-name">Nombres *</label>
+                            <input type="text" id="first-name" name="first_name" required placeholder="Ej. Juan Andrés">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Apellidos *</label>
+                            <input type="text" id="last-name" name="last_name" required placeholder="Ej. Pérez Gómez">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico *</label>
+                            <input type="email" id="email" name="email" required placeholder="juan.perez@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Ej. +595 981 123456">
+                        </div>
+                        <div class="form-group">
+                            <label for="birth-date">Fecha de Nacimiento *</label>
+                            <input type="date" id="birth-date" name="birth_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Ciudad y País de Residencia *</label>
+                            <input type="text" id="address" name="address" required placeholder="Ej. Asunción, Paraguay">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="form-section" style="border: none; padding: 0; margin: 0; margin-top: 30px;">
+                    <legend class="form-section-title">🎓 Historial Académico e Idiomas</legend>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="education-level">Último Nivel de Estudios Alcanzado *</label>
+                            <select id="education-level" name="education_level" required>
+                                <option value="" disabled selected>Seleccione una opción</option>
+                                <option value="secundario">Educación Secundaria</option>
+                                <option value="tecnico">Educación Técnica / Terciaria</option>
+                                <option value="universitario-incompleto">Universitario en Curso / Incompleto</option>
+                                <option value="universitario-completo">Universitario Graduado</option>
+                                <option value="postgrado">Postgrado / Maestría / Doctorado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="academic-title">Título Obtenido / Carrera *</label>
+                            <input type="text" id="academic-title" name="academic_title" required placeholder="Ej. Lic. en Letras, Traductor Público, etc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="native-language">Idioma Materno *</label>
+                            <input type="text" id="native-language" name="native_language" required placeholder="Ej. Español, Guaraní">
+                        </div>
+                        <div class="form-group">
+                            <label for="target-languages">Idiomas de Trabajo / Combinaciones *</label>
+                            <input type="text" id="target-languages" name="target_languages" required placeholder="Ej. Inglés a Español, Alemán a Español">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="form-section" style="border: none; padding: 0; margin: 0; margin-top: 30px;">
+                    <legend class="form-section-title">💼 Experiencia Laboral Previa</legend>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="current-job">Puesto Actual / Último Ocupado *</label>
+                            <input type="text" id="current-job" name="current_job" required placeholder="Ej. Traductor Freelance, Docente de Inglés">
+                        </div>
+                        <div class="form-group">
+                            <label for="experience-years">Años de Experiencia en el Rubro *</label>
+                            <select id="experience-years" name="experience_years" required>
+                                <option value="" disabled selected>Seleccione el rango</option>
+                                <option value="0-1">Menos de 1 año</option>
+                                <option value="1-3">Entre 1 y 3 años</option>
+                                <option value="3-5">Entre 3 y 5 años</option>
+                                <option value="5+">Más de 5 años</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="experience-details">Resumen de Experiencias Relevantes *</label>
+                            <textarea id="experience-details" name="experience_details" required placeholder="Describa brevemente sus funciones anteriores, proyectos clave o agencias con las que ha colaborado."></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="tools">Herramientas que domina (ej. Teclado +60wps, HTML, Lingüística, Traducción...)</label>
+                            <input type="text" id="tools" name="tools" placeholder="Ej. CSS, JS, Interpretación Simultánea, Ciberseguridad, etc.">
+                        </div>
+                    </div>
+                    <legend class="form-section-title">Vacantes Disponibles</legend>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="education-level">Seleccione la vacante a la que desea postular *</label>
+                            <select id="education-level" name="education_level" required>
+                                <option value="carrera-esencial">Mantenimiento</option>
+                                <option value="carrera-esencial">Seguridad</option>
+                                <option value="carrera-esencial">Secretario/a</option>
+                                <option value="carrera-esencial">Tesorero</option>
+                                <option value="carrera-esencial">Representante</option>
+                                <option value="carrera-de-especialidad">Transcriptor</option>
+                                <option value="carrera-de-especialidad">Traductor (DOCS)</option>
+                                <option value="carrera-de-especialidad">Traductor (WEB)</option>
+                                <option value="carrera-de-especialidad">Intérprete</option>
+                                <option value="carrera-de-especialidad">Profesor de Lenguas Extranjeras</option>
+                                <option value="carrera-administrativa">Supervisor</option>
+                                <option value="carrera-administrativa">Director</option>
+                            </select>
+                        </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" class="cta-button btn-submit">Enviar Postulación</button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div>
+                <h4>Cases Language Services</h4>
+                <p>📞 +595 973 793 110</p>
+                <p>📧 caseslanguages@gmail.com</p>
+                <p>&copy; 2024 Cases Language Services. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

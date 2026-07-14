@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización de Servicios | Cases Language Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos y complementarios para la Calculadora Premium */
+        .quote-container {
+            max-width: 900px;
+            margin: 60px auto;
+            background: var(--color-surface-base);
+            backdrop-filter: blur(var(--glass-backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--glass-backdrop-blur));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: var(--card-box-shadow);
+            border-radius: var(--border-radius-lg);
+            padding: 40px;
+        }
+
+        .quote-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid rgba(90, 156, 155, 0.15);
+            padding-bottom: 20px;
+        }
+
+        .quote-header h1 {
+            color: var(--color-secondary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Grid de información de los 5 servicios principales */
+        .services-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .mini-service-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--border-radius-md);
+            padding: 20px;
+            transition: all var(--transition-speed);
+        }
+
+        .mini-service-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .mini-service-card h3 {
+            font-size: 1.1rem;
+            color: var(--color-primary-teal);
+            margin-bottom: 8px;
+        }
+
+        .mini-service-card p {
+            font-size: 0.85rem;
+            color: var(--color-text-dark);
+            line-height: 1.4;
+        }
+
+        /* Sección de la Calculadora de Cotización */
+        .calculator-section {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--border-radius-md);
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .calculator-title {
+            font-size: 1.4rem;
+            color: var(--color-secondary-blue);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-text-dark);
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--color-text-dark);
+            transition: all var(--transition-speed);
+            box-sizing: border-box;
+        }
+
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--color-primary-teal);
+            box-shadow: 0 0 0 4px rgba(90, 156, 155, 0.15);
+        }
+
+        .dynamic-param {
+            display: none; /* Ocultos por defecto, JS los mostrará según la selección */
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Caja del Resultado Total Estilizada */
+        .result-box {
+            margin-top: 30px;
+            background: linear-gradient(135deg, var(--color-primary-teal), var(--color-secondary-blue));
+            border-radius: 12px;
+            padding: 25px;
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(90, 156, 155, 0.25);
+        }
+
+        .result-box h4 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .result-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .result-disclaimer {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        /* Fondo decorativo */
+        .site-backdrop-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vw;
+            height: 85vh;
+            max-width: 1080px;
+            max-height: 1080px;
+            background-image: url('site_logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.05;
+            filter: blur(1px);
+            pointer-events: none;
+            z-index: -2;
+        }
+    </style>
+</head>
+<body id="main-body">
+    <div class="site-backdrop-bg"></div>
+
+    <header class="site-header">
+        <div class="logo-and-branding">
+            <a href="index.html" style="text-decoration: none;">
+                <img src="site_logo.png" alt="Cases Language Services Logo" class="main-logo">
+            </a>
+            <p class="motto">
+                Conectando culturas y negocios a través del lenguaje. Su socio lingüístico en Paraguay.
+            </p>
+        </div>
+        <a href="index.html" class="cta-button" style="padding: 10px 25px; font-size: 0.9rem;">Volver al Inicio</a>
+    </header>
+
+    <main class="container">
+        <div class="quote-container">
+            <div class="quote-header">
+                <h1>Cotización de Servicios</h1>
+                <p>Explore nuestro catálogo y calcule un estimado inmediato para su próximo proyecto lingüístico.</p>
+            </div>
+
+            <!-- Información resumida de los 5 Servicios Clave -->
+            <section class="services-summary">
+                <div class="mini-service-card">
+                    <h3>📄 Traducción de Documentos</h3>
+                    <p>Traducciones juradas y académicas con validez legal internacional. Facturación basada en total de palabras.</p>
+                </div>
+                <div class="mini-service-card">
+                    <h3>🌐 Traducción de Páginas Web</h3>
+                    <p>Localización integral de plataformas digitales y SEO internacional. Tarifa estimada por total de páginas.</p>
+                </div>
+                <div class="mini-service-card">
+                    <h3>🎙️ Intérprete de Conferencias</h3>
+                    <p>Interpretación consecutiva y simultánea in-situ o remota. Cotizado por hora de servicio profesional.</p>
+                </div>
+                <div class="mini-service-card">
+                    <h3>📝 Transcripción de Documentos</h3>
+                    <p>Conversión exacta de archivos de audio o video a documentos listos para su edición. Calculado por página transcrita.</p>
+                </div>
+                <div class="mini-service-card">
+                    <h3>📚 Cursos de Lenguas Extranjeras</h3>
+                    <p>Programas corporativos y personalizados en distintos niveles. Cuota mensual calculada por idioma elegido.</p>
+                </div>
+            </section>
+
+            <!-- Calculadora de Cotización Interactiva -->
+            <section class="calculator-section">
+                <div class="calculator-title">🧮 Calculadora de Costo Estimado</div>
+                
+                <form id="quote-calculator-form">
+                    <!-- Selección del Servicio -->
+                    <div class="form-group">
+                        <label for="service-selector">Seleccione el Servicio Requerido:</label>
+                        <select id="service-selector" required>
+                            <option value="" disabled selected>-- Por favor, elija un servicio --</option>
+                            <option value="docs">Traducción de Documentos (por palabras)</option>
+                            <option value="web">Traducción de Páginas Web (por páginas)</option>
+                            <option value="interpreter">Intérprete de Conferencias (por horas)</option>
+                            <option value="transcription">Transcripción de Documentos (por páginas)</option>
+                            <option value="courses">Cursos de Lenguas Extranjeras (mensual)</option>
+                        </select>
+                    </div>
+
+                    <!-- Parámetro Dinámico: Traducción de Documentos (Palabras) -->
+                    <div class="form-group dynamic-param" id="param-words">
+                        <label for="input-words">Cantidad Total de Palabras:</label>
+                        <input type="number" id="input-words" min="1" placeholder="Ej. 1000">
+                    </div>
+
+                    <!-- Parámetro Dinámico: Traducción Web (Páginas Web) -->
+                    <div class="form-group dynamic-param" id="param-web-pages">
+                        <label for="input-web-pages">Cantidad Total de Páginas Web a Localizar:</label>
+                        <input type="number" id="input-web-pages" min="1" placeholder="Ej. 5">
+                    </div>
+
+                    <!-- Parámetro Dinámico: Interpretación (Horas) -->
+                    <div class="form-group dynamic-param" id="param-hours">
+                        <label for="input-hours">Duración Estimada de la Conferencia (Horas):</label>
+                        <input type="number" id="input-hours" min="1" placeholder="Ej. 4">
+                    </div>
+
+                    <!-- Parámetro Dinámico: Transcripción (Páginas de texto finales) -->
+                    <div class="form-group dynamic-param" id="param-transcription-pages">
+                        <label for="input-transcription-pages">Cantidad Estimada de Páginas a Transcribir:</label>
+                        <input type="number" id="input-transcription-pages" min="1" placeholder="Ej. 10">
+                    </div>
+
+                    <!-- Parámetro Dinámico: Cursos (Selección de Idiomas) -->
+                    <div class="form-group dynamic-param" id="param-languages">
+                        <label for="language-selector">Seleccione el Idioma del Curso:</label>
+                        <select id="language-selector">
+                            <option value="" disabled selected>-- Seleccione el idioma --</option>
+                            <option value="en">Inglés (Mensual)</option>
+                            <option value="zh">Chino Mandarín (Mensual)</option>
+                            <option value="de">Alemán (Mensual)</option>
+                            <option value="gn">Guaraní (Mensual)</option>
+                        </select>
+                    </div>
+                </form>
+
+                <!-- Caja de Resultados de la Cotización -->
+                <div class="result-box">
+                    <h4>Costo Aproximado</h4>
+                    <div class="result-price" id="display-price">Gs. 0</div>
+                    <p class="result-disclaimer">
+                        * Este cálculo es únicamente una estimación referencial en Guaraníes (Gs.). Los valores finales de cotización pueden variar según la complejidad técnica, urgencia del encargo y descuentos por volumen.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div>
+                <h4>Cases Language Services</h4>
+                <p>📞 +595 973 793 110</p>
+                <p>📧 caseslanguages@gmail.com</p>
+                <p>&copy; 2026 Cases Language Services. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica de Negocio Interactiva de la Calculadora en JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const serviceSelector = document.getElementById('service-selector');
+            const displayPrice = document.getElementById('display-price');
+            
+            // Elementos de parámetros dinámicos
+            const paramGroups = {
+                docs: document.getElementById('param-words'),
+                web: document.getElementById('param-web-pages'),
+                interpreter: document.getElementById('param-hours'),
+                transcription: document.getElementById('param-transcription-pages'),
+                courses: document.getElementById('param-languages')
+            };
+
+            // Inputs correspondientes
+            const inputs = {
+                words: document.getElementById('input-words'),
+                webPages: document.getElementById('input-web-pages'),
+                hours: document.getElementById('input-hours'),
+                transcriptionPages: document.getElementById('input-transcription-pages'),
+                courseLanguage: document.getElementById('language-selector')
+            };
+
+            // Lista de Precios de Referencia (en Gs.)
+            const RATES = {
+                wordPrice: 350,              // Por palabra traducida (Traducción Documentos)
+                webPagePrice: 250000,        // Por página web localizada
+                interpreterHourPrice: 400000,// Por hora de interpretación profesional
+                transcriptionPagePrice: 35000, // Por página final transcrita
+                coursesMonthly: {
+                    en: 300000,              // Curso de Inglés mensual
+                    zh: 450000,              // Curso de Chino Mandarín mensual
+                    de: 400000,              // Curso de Alemán mensual
+                    gn: 250000               // Curso de Guaraní mensual
+                }
+            };
+
+            // Función para ocultar todos los campos dinámicos
+            function hideAllParams() {
+                Object.values(paramGroups).forEach(group => {
+                    group.style.display = 'none';
+                });
+            }
+
+            // Función para resetear los valores de entrada de la calculadora
+            function resetInputs() {
+                Object.values(inputs).forEach(input => {
+                    input.value = '';
+                });
+                displayPrice.textContent = 'Gs. 0';
+            }
+
+            // Manejador del cambio de servicio
+            serviceSelector.addEventListener('change', (e) => {
+                hideAllParams();
+                resetInputs();
+                const selectedService = e.target.value;
+
+                if (paramGroups[selectedService]) {
+                    paramGroups[selectedService].style.display = 'flex';
+                }
+            });
+
+            // Función para formatear números a formato de miles local (Gs.)
+            function formatCurrency(value) {
+                return 'Gs. ' + value.toLocaleString('es-PY');
+            }
+
+            // Función de cálculo maestro
+            function calculateQuote() {
+                const service = serviceSelector.value;
+                let total = 0;
+
+                if (service === 'docs') {
+                    const val = parseInt(inputs.words.value) || 0;
+                    total = val * RATES.wordPrice;
+                } else if (service === 'web') {
+                    const val = parseInt(inputs.webPages.value) || 0;
+                    total = val * RATES.webPagePrice;
+                } else if (service === 'interpreter') {
+                    const val = parseInt(inputs.hours.value) || 0;
+                    total = val * RATES.interpreterHourPrice;
+                } else if (service === 'transcription') {
+                    const val = parseInt(inputs.transcriptionPages.value) || 0;
+                    total = val * RATES.transcriptionPagePrice;
+                } else if (service === 'courses') {
+                    const lang = inputs.courseLanguage.value;
+                    if (lang && RATES.coursesMonthly[lang]) {
+                        total = RATES.coursesMonthly[lang];
+                    }
+                }
+
+                displayPrice.textContent = formatCurrency(total);
+            }
+
+            // Escuchar eventos en tiempo real en todos los inputs para actualizar el costo sin retrasos
+            Object.values(inputs).forEach(input => {
+                input.addEventListener('input', calculateQuote);
+                input.addEventListener('change', calculateQuote);
+            });
+        });
+    </script>
+</body>
+</html>
