@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cases Language Services | Your Language Bridge to Paraguay</title>
+    <!-- ENLACE CSS: Se añade el enlace a styles.css aquí para cargar los estilos primero -->
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <!-- Estilo ultra-premium integrado exclusivamente para el backdrop de fondo -->
+    <style>
+        .site-backdrop-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vw;
+            height: 85vh;
+            max-width: 1080px;
+            max-height: 1080px;
+            background-image: url('site_logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.09; /* Opacidad ultra baja para un look elegante que no cansa la vista */
+            filter: blur(1px); /* Suaviza los bordes para integrarse al cristal del fondo */
+            pointer-events: none; /* Evita que interfiera con los clics del usuario */
+            z-index: -2; /* Posicionado por detrás de todo el contenido */
+        }
+    </style>
+</head>
+
+<body id="main-body"> <!-- Añadí un ID al body por buenas prácticas -->
+
+    <!-- Elemento del Backdrop Moderno -->
+    <div class="site-backdrop-bg"></div>
+
+    <!-- ======================================= -->
+    <!-- 1. HEADER Y NAVEGACIÓN PRINCIPAL (Semántica Crucial) -->
+    <!-- ======================================= -->
+    <header class="site-header">
+        <div class="logo-and-branding">
+            <!-- Logo Principal -->
+            <img src="site_logo.png" alt="Cases Language Services Logo" class="main-logo">
+            
+            <!-- El Motto/Misión: Primer mensaje para el visitante -->
+            <p class="motto">
+                Connecting cultures and businesses through language. Your linguistic partner in Paraguay.
+            </p>
+        </div>
+
+        <nav class="primary-menu" aria-label="Navegación principal de servicios">
+            <!-- Lista de enlaces basada estrictamente en los 8 puntos solicitados -->
+            <ul>
+                <li><a href="traduccion-documentos.html">Translation (DOCS)</a></li>
+                <li><a href="traduccion-web.html">Translation (WEB)</a></li>
+                <li><a href="interprete-conferencias.html">Interpreters</a></li>
+                <li><a href="transcripcion-documentos.html">Transcription (DOCS)</a></li>
+                <li><a href="cursos-lenguas-extranjeras.html">Courses (Foreign Languages)</a></li>
+                <li><a href="idiomas.html">Languages</a></li>
+                <li><a href="cls-academy.html">CLS Academy</a></li>
+                <li><a href="carreras.html">Careers</a></li>
+            </ul>
+        </nav>
+
+        <!-- Botón Interactivo de Selección de Idiomas -->
+        <button class="language-selector-btn" id="openLanguageListBtn" aria-expanded="false" aria-controls="language-list">
+             <span>Languages</span> ▼
+</button>
+
+        <!-- Contenedor Oculto/Interactivo para los idiomas (JavaScript lo mostrará) -->
+        <div class="dropdown-content" id="language-list" role="menu" hidden>
+            <a href="index.html" role="menuitem">Español</a>
+            <a href="index_en.html" role="menuitem">English</a>
+            <a href="index_de.html" role="menuitem">Deutsch</a>
+            <a href="index_gn.html" role="menuitem">Avañe'ẽ</a>
+            <a href="index_zh.html" role="menuitem">中文</a>
+            <a href="index_pt.html" role="menuitem">Português</a>
+        </div>
+
+    </header>
+
+    <!-- ======================================= -->
+    <!-- SECCIÓN HERO/INTRODUCTORIA (Impacto Visual) -->
+    <!-- ======================================= -->
+    <section class="hero-section container" aria-labelledby="mainHeadline">
+        <h1 id="mainHeadline">Your Gateway to Paraguay</h1>
+        <p class="subtitle-motto">
+            Cases Language Services ensures impeccable communication for residents and businesses looking to grow in the Paraguayan market.
+        </p>
+        <a href="#contactar" role="button" class="cta-button">Get a Quote Now</a>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- SECCIÓN DE SERVICIOS CLAVE (Secciones con Anclas) -->
+    <!-- ======================================= -->
+    <main class="services-grid container">
+        <h2>Professional Services</h2>
+        
+        <!-- Servicio 1: Traducción de Documentos -->
+        <section id="traduccion-documentos" class="service-card">
+            <h3>📄 Document Translation</h3>
+            <p>Specialized translations for legal, academic and business documentation. Guarantee of terminological fidelity.</p>
+        </section>
+
+        <!-- Servicio 2: Traducción Web -->
+        <section id="traduccion-web" class="service-card">
+            <h3>🌐 Web Localization and Translation</h3>
+            <p>We adapt your complete web content (SEO, usability) so your brand resonates authentically with international audiences.</p>
+        </section>
+
+        <!-- Servicio 3: Intérprete de Conferencias -->
+        <section id="interprete-conferencias" class="service-card">
+            <h3>🎙️ Conference Interpreting</h3>
+            <p>Simultaneous and consecutive interpreters for conferences, negotiations and corporate events in real-time.</p>
+        </section>
+
+         <!-- Servicio 4: Transcripción de Documentos -->
+        <section id="transcripcion" class="service-card">
+            <h3>📝 Audio & Video Transcription</h3>
+            <p>We transform any recording (audio, video, meetings) into editable texts ready for editorial use.</p>
+        </section>
+
+        <!-- Servicio 5: Cursos -->
+        <section id="cursos-idiomas" class="service-card">
+            <h3>📚 Language Courses</h3>
+            <p>Programs adapted to the student's needs: from beginners to advanced levels for the professional environment.</p>
+        </section>
+
+         <!-- Servicio 6: Idiomas (Punto genérico, podría enlazar al dropdown) -->
+        <section id="idiomas" class="service-card">
+            <h3>📚 Available Languages</h3>
+            <p>We offer linguistic coverage in the most demanded languages globally and regionally.</p>
+        </section>
+
+        <!-- Servicio 7: Academia -->
+        <section id="cls-academy" class="service-card">
+            <h3>🎓 CLS Academy</h3>
+            <p>Our continued learning platform for those who seek to master a new language in a flexible environment.</p>
+        </section>
+
+        <!-- Servicio 8: Carreras -->
+        <section id="carreras" class="service-card">
+            <h3>💼 Professional Careers</h3>
+            <p>We connect linguistic talent with the best job opportunities in Paraguay and abroad.</p>
+        </section>
+
+    </main>
+
+    <!-- ======================================= -->
+    <!-- FOOTER (Información de Contacto) -->
+    <!-- ======================================= -->
+    <footer id="contactar" class="site-footer">
+        <div class="container footer-content">
+            <div>
+                <h4>Contact Us</h4>
+                <p>📞 +595 973 793 110</p>
+                <p>📧 caseslanguages@gmail.com</p>
+                <p>We are ready to make your message universal.</p>
+                <p>&copy; 2024 Cases Language Services. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Quick Links</h5>
+                <!-- Repetition of menu links for accessibility -->
+                <ul>
+                    <li><a href="#traduccion-documentos">Documentation</a></li>
+                    <li><a href="#cursos-idiomas">Courses</a></li>
+                    <li><a href="mailto:caseslanguages@gmail.com">Direct Email</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+<!-- ENLACE JS: Se añade el script al final del body para garantizar que todos los elementos existen antes de ejecutar la lógica -->
+<script src="script.js"></script>
+
+</body>
+</html>

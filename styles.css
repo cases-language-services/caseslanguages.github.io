@@ -1,0 +1,560 @@
+:root {
+    /* Paleta de colores profesionales (Mantenida intacta) */
+    --color-primary-teal: #5a9c9b;  
+    --color-secondary-blue: #4d8ac6; 
+    --color-text-dark: #2c3e50;     
+    --color-background-light: #f9fafb; 
+    --color-surface-base: rgba(255, 255, 255, 0.85); 
+
+    /* Constantes de diseño Premium optimizadas para 2026 */
+    --border-radius-lg: 24px;       /* Bordes ligeramente más orgánicos y modernos */
+    --border-radius-sm: 12px;
+    --transition-speed: 0.5s cubic-bezier(0.16, 1, 0.3, 1); /* Curva de desaceleración ultra suave (Estilo Apple) */
+    --glass-backdrop-blur: 20px;    /* Desenfoque de fondo incrementado para realismo premium */
+    
+    /* Sombras tridimensionales realistas con dispersión fina */
+    --card-box-shadow: 0 20px 40px rgba(44, 62, 80, 0.05), 
+                        0 1px 3px rgba(0, 0, 0, 0.02),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.6); 
+    
+    --glass-border: 1px solid rgba(255, 255, 255, 0.45);
+    --glass-border-hover: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Animaciones Modernas 2026 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subtlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes floatEffect {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Estilos Globales */
+body {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--color-background-light);
+    /* Sutil malla de fondo interactiva con la paleta de colores */
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(90, 156, 155, 0.07) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(77, 138, 198, 0.07) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--color-text-dark);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header y Navegación Premium (Glassmorphism Avanzado) */
+.site-header {
+    background: rgba(255, 255, 255, 0.65); /* Más translúcido para que se note el blur */
+    backdrop-filter: blur(var(--glass-backdrop-blur)) saturate(190%);
+    -webkit-backdrop-filter: blur(var(--glass-backdrop-blur)) saturate(190%);
+    border-bottom: var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(44, 62, 80, 0.03);
+    transition: all var(--transition-speed);
+}
+
+/* Pequeño truco premium: al hacer scroll (o hover) el header se compacta con clase opcional o hover */
+.site-header:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 35px rgba(44, 62, 80, 0.06);
+}
+
+.logo-and-branding {
+    max-width: 40%;
+}
+
+.main-logo {
+    max-height: 45px;
+    display: block;
+    margin-bottom: 6px;
+    transition: transform var(--transition-speed);
+}
+
+.main-logo:hover {
+    transform: scale(1.03);
+}
+
+.motto {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(44, 62, 80, 0.6);
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+
+/* Menú de Navegación */
+.primary-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.primary-menu a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 8px 12px;
+    border-radius: var(--border-radius-sm);
+    position: relative;
+    transition: all var(--transition-speed);
+}
+
+/* Línea de hover moderna, sutil y minimalista */
+.primary-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary-teal), var(--color-secondary-blue));
+    transition: width var(--transition-speed), left var(--transition-speed);
+    border-radius: 2px;
+}
+
+.primary-menu a:hover::after,
+.primary-menu a.active::after {
+    width: 80%;
+    left: 10%;
+}
+
+.primary-menu a:hover {
+    color: var(--color-primary-teal);
+    background: rgba(90, 156, 155, 0.05);
+}
+
+.primary-menu a.active {
+    color: var(--color-secondary-blue);
+    background: rgba(77, 138, 198, 0.07);
+}
+
+/* Selector de Idiomas Interactivo (Glassmorphic) */
+.language-selector-btn {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: var(--glass-border);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.03);
+    transition: all var(--transition-speed);
+}
+
+.language-selector-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border: var(--glass-border-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(44, 62, 80, 0.06);
+}
+
+/* Desplegable de Idiomas Glassmorphic */
+.dropdown-content {
+    position: absolute;
+    right: 40px;
+    top: 85px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 30px 60px rgba(44, 62, 80, 0.12), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 180px;
+    border: var(--glass-border);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity var(--transition-speed), transform var(--transition-speed);
+}
+
+/* Mostrar dropdown sin usar display:none para permitir transiciones fluidas de opacidad */
+.dropdown-content:not([hidden]) {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Asegurar compatibilidad para cuando no se use JS de inmediato */
+.dropdown-content[hidden] {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+.dropdown-content a {
+    padding: 10px 16px;
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    color: var(--color-text-dark);
+    font-weight: 500;
+    transition: all var(--transition-speed);
+}
+
+.dropdown-content a:hover {
+    background: rgba(90, 156, 155, 0.1);
+    color: var(--color-primary-teal);
+    transform: translateX(4px);
+}
+
+/* Sección Hero Premium */
+.hero-section {
+    text-align: center;
+    padding: 140px 20px 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Elementos decorativos abstractos de fondo para sensación tridimensional */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(90, 156, 155, 0.15) 0%, transparent 70%);
+    z-index: -1;
+    animation: floatEffect 12s ease-in-out infinite alternate;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(77, 138, 198, 0.12) 0%, transparent 70%);
+    z-index: -1;
+    animation: floatEffect 16s ease-in-out infinite alternate-reverse;
+}
+
+.hero-section h1 {
+    font-size: 4.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-secondary-blue);
+    margin-bottom: 24px;
+    line-height: 1.1;
+    animation: fadeInUp 0.8s var(--transition-speed) both;
+}
+
+.subtitle-motto {
+    font-size: 1.25rem;
+    font-weight: 400;
+    max-width: 750px;
+    margin: 0 auto 48px auto;
+    color: rgba(44, 62, 80, 0.8);
+    line-height: 1.7;
+    animation: fadeInUp 1s var(--transition-speed) both;
+}
+
+/* Botón de Llamado a la Acción (CTA) Ultra Premium */
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--color-primary-teal), var(--color-secondary-blue));
+    text-decoration: none;
+    padding: 18px 45px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: white;
+    border-radius: 100px;
+    box-shadow: 0 10px 30px rgba(90, 156, 155, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-speed);
+    animation: fadeInUp 1.2s var(--transition-speed) both;
+}
+
+.cta-button:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 20px 45px rgba(90, 156, 155, 0.45);
+}
+
+.cta-button:active {
+    transform: translateY(-1px) scale(0.99);
+}
+
+/* Páginas de contenido secundario y layout de cuadrícula */
+.page-hero {
+    text-align: center;
+    padding: 60px 0;
+    animation: fadeInUp 0.8s var(--transition-speed) both;
+}
+
+.page-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--color-secondary-blue);
+    margin-bottom: 16px;
+}
+
+.lead-text {
+    font-size: 1.25rem;
+    color: rgba(44, 62, 80, 0.85);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Grid de Servicios y Tarjetas con Efecto Glassmorphic 2026 */
+.services-grid h2,
+.services-detail-section h2,
+.process-section h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 60px;
+    color: var(--color-text-dark);
+}
+
+.services-grid, 
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+    padding-bottom: 80px;
+}
+
+/* Tarjeta Glassmorphic Premium */
+.service-card, 
+.detail-card {
+    background: var(--color-surface-base);
+    backdrop-filter: blur(var(--glass-backdrop-blur)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--glass-backdrop-blur)) saturate(160%);
+    border: var(--glass-border);
+    box-shadow: var(--card-box-shadow);
+    border-radius: var(--border-radius-lg);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-speed);
+}
+
+/* Capa de reflejo de luz interior para simular cristal */
+.service-card::before, 
+.detail-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: skewX(-25deg);
+    transition: 0.75s;
+    pointer-events: none;
+}
+
+/* Interacciones e iluminación en hover */
+.service-card:hover, 
+.detail-card:hover {
+    transform: translateY(-8px);
+    border: var(--glass-border-hover);
+    box-shadow: 0 30px 60px rgba(44, 62, 80, 0.08), 
+                0 4px 12px rgba(44, 62, 80, 0.02),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.93);
+}
+
+.service-card:hover::before, 
+.detail-card:hover::before {
+    left: 150%;
+}
+
+.service-card h3, 
+.detail-card h3 {
+    color: var(--color-secondary-blue);
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    transition: color var(--transition-speed);
+}
+
+.service-card:hover h3, 
+.detail-card:hover h3 {
+    color: var(--color-primary-teal);
+}
+
+.service-card p, 
+.detail-card p {
+    color: rgba(44, 62, 80, 0.8);
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.7;
+}
+
+/* Sección de Procesos y Pasos */
+.process-section {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: var(--glass-border);
+    border-radius: var(--border-radius-lg);
+    padding: 60px 40px;
+    margin: 40px 0 80px 0;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 40px 0 0 0;
+}
+
+.process-steps li {
+    background: rgba(255, 255, 255, 0.5);
+    border: var(--glass-border);
+    padding: 24px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 10px 20px rgba(44, 62, 80, 0.02);
+    transition: all var(--transition-speed);
+}
+
+.process-steps li:hover {
+    background: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(44, 62, 80, 0.05);
+}
+
+/* Sección CTA de Páginas Secundarias */
+.cta-section {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(90, 156, 155, 0.05), rgba(77, 138, 198, 0.05));
+    border: var(--glass-border);
+    border-radius: var(--border-radius-lg);
+    padding: 60px 40px;
+    margin-bottom: 80px;
+}
+
+.cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.cta-section p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    color: rgba(44, 62, 80, 0.8);
+}
+
+/* Footer Modernizado */
+.site-footer {
+    background: var(--color-text-dark); /* Manteniendo el tono dark del palette */
+    color: #e2e8f0;
+    padding: 80px 0 40px 0;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-content h4, 
+.footer-content h5 {
+    color: white;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.footer-content p {
+    color: #a0aec0;
+    line-height: 1.8;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    color: #a0aec0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-speed);
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary-teal);
+    transform: translateX(4px);
+}
+
+/* Diseño Responsivo Optimizado */
+@media (max-width: 968px) {
+    .site-header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .logo-and-branding {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .primary-menu ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.8rem;
+    }
+}
