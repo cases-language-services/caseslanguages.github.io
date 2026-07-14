@@ -4,122 +4,515 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cursos de Lenguas Extranjeras | Cases Language Services</title>
-    <!-- Enlace a tus estilos globales para mantener la coherencia visual -->
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos y optimizaciones premium para la sección de Cursos */
+        .courses-layout {
+            margin: 60px auto;
+            max-width: 1000px;
+        }
+
+        .courses-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .courses-intro h1 {
+            color: var(--color-secondary-blue);
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+        }
+
+        /* Selector de Cursos (Tabs) de alto rendimiento */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 12px 24px;
+            border-radius: var(--border-radius-md);
+            color: var(--color-text-dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            backdrop-filter: blur(var(--glass-backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--glass-backdrop-blur));
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--color-primary-teal);
+            color: #ffffff;
+            border-color: var(--color-primary-teal);
+            box-shadow: 0 4px 15px rgba(90, 156, 155, 0.3);
+        }
+
+        /* Contenido del Curso */
+        .course-panel {
+            display: none; /* Controlado dinámicamente por JS */
+            background: var(--color-surface-base);
+            backdrop-filter: blur(var(--glass-backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--glass-backdrop-blur));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: var(--border-radius-lg);
+            padding: 40px;
+            box-shadow: var(--card-box-shadow);
+            animation: panelFadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .course-panel.active {
+            display: block;
+        }
+
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .course-title {
+            color: var(--color-secondary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(90, 156, 155, 0.15);
+            padding-bottom: 10px;
+        }
+
+        /* Grid de Detalles Técnicos del Curso */
+        .course-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .detail-item-box {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--border-radius-md);
+            padding: 20px;
+        }
+
+        .detail-item-box h4 {
+            color: var(--color-primary-teal);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-item-box p {
+            font-size: 1rem;
+            color: var(--color-text-dark);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Estructura de la Malla Curricular Cronológica */
+        .curriculum-section {
+            margin-bottom: 40px;
+        }
+
+        .curriculum-title {
+            font-size: 1.3rem;
+            color: var(--color-secondary-blue);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .curriculum-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid rgba(90, 156, 155, 0.2);
+        }
+
+        .timeline-step {
+            position: relative;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            transition: transform var(--transition-speed);
+        }
+
+        .timeline-step:hover {
+            transform: translateX(5px);
+            background: #ffffff;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--color-primary-teal);
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        /* Sección Informativa Importante */
+        .info-disclaimer-box {
+            background: linear-gradient(135deg, rgba(90, 156, 155, 0.08), rgba(41, 128, 185, 0.08));
+            border: 1px solid rgba(90, 156, 155, 0.2);
+            border-radius: var(--border-radius-md);
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        .info-disclaimer-box h3 {
+            color: var(--color-secondary-blue);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-disclaimer-box p {
+            font-size: 0.9rem;
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        .info-disclaimer-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Fondo decorativo */
+        .site-backdrop-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vw;
+            height: 85vh;
+            max-width: 1080px;
+            max-height: 1080px;
+            background-image: url('site_logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.05;
+            filter: blur(1px);
+            pointer-events: none;
+            z-index: -2;
+        }
+    </style>
 </head>
+<body id="main-body">
+    <div class="site-backdrop-bg"></div>
 
-<body id="cursos-lenguas-page">
-
-    <!-- ======================================= -->
-    <!-- HEADER Y NAVEGACIÓN (Consistencia de marca) -->
-    <!-- ======================================= -->
     <header class="site-header">
         <div class="logo-and-branding">
-            <a href="index.html">
+            <a href="index.html" style="text-decoration: none;">
                 <img src="site_logo.png" alt="Cases Language Services Logo" class="main-logo">
             </a>
             <p class="motto">
                 Conectando culturas y negocios a través del lenguaje. Su socio lingüístico en Paraguay.
             </p>
         </div>
-
-        <nav class="primary-menu" aria-label="Navegación principal">
-            <ul>
-                <li><a href="traduccion-documentos.html">Traducción (DOCS)</a></li>
-                <li><a href="traduccion-web.html">Traducción (WEB)</a></li>
-                <li><a href="interprete-conferencias.html">Intérpretes</a></li>
-                <li><a href="transcripcion-documentos.html">Transcripción (DOCS)</a></li>
-                <li><a href="cursos-lenguas-extranjeras.html" class="active">Cursos (Lenguas Extranjeras)</a></li>
-                <li><a href="idiomas.html">Idiomas</a></li>
-                <li><a href="cls-academy.html">CLS Academy</a></li>
-                <li><a href="carreras.html">Carreras</a></li>
-            </ul>
-        </nav>
+        <a href="index.html" class="cta-button" style="padding: 10px 25px; font-size: 0.9rem;">Volver al Inicio</a>
     </header>
 
-    <!-- ======================================= -->
-    <!-- CONTENIDO PRINCIPAL: CURSOS DE IDIOMAS -->
-    <!-- ======================================= -->
-    <main class="container page-content">
-        
-        <!-- Encabezado de la página -->
-        <section class="page-hero">
-            <h1>📚 Cursos de Lenguas Extranjeras</h1>
-            <p class="lead-text">
-                Desarrolla tus competencias globales. Ofrecemos programas de idiomas de primer nivel, diseñados a medida para profesionales, empresas y estudiantes que buscan el éxito internacional desde Paraguay.
-            </p>
-        </section>
+    <main class="container courses-layout">
+        <div class="courses-intro">
+            <h1>Programa de Lenguas Extranjeras</h1>
+            <p>Formación lingüística avanzada bajo metodologías virtuales de alto rendimiento académico.</p>
+        </div>
 
-        <!-- Detalle de los programas disponibles -->
-        <section class="services-detail-section">
-            <h2>Nuestros Programas de Idiomas</h2>
+        <!-- Selector Interactivo de Cursos -->
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="switchCourse('english')">🇺🇸 Inglés Básico</button>
+            <button class="tab-btn" onclick="switchCourse('german')">🇩🇪 Alemán Básico</button>
+            <button class="tab-btn" onclick="switchCourse('chinese')">🇨🇳 Chino Mandarín Básico</button>
+            <button class="tab-btn" onclick="switchCourse('guarani')">🇵🇾 Guaraní Básico</button>
+            <button class="tab-btn" onclick="switchCourse('portuguese')">🇧🇷 Portugués Básico</button>
+        </div>
+
+        <!-- Panel 1: Curso de Inglés -->
+        <section id="panel-english" class="course-panel active">
+            <h2 class="course-title">Curso de Inglés Básico</h2>
             
-            <div class="details-grid">
-                <article class="detail-card">
-                    <h3>👔 Inglés de Negocios (Business English)</h3>
-                    <p>Orientado a ejecutivos y profesionales que necesitan comunicarse con fluidez en reuniones de negocios, presentaciones, redacción de correos electrónicos y negociaciones comerciales internacionales.</p>
-                </article>
+            <div class="course-details-grid">
+                <div class="detail-item-box">
+                    <h4>📅 Días de clases</h4>
+                    <p>Lunes, Miércoles, Viernes</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏰ Horario y Secciones</h4>
+                    <p><strong>1ra Sección:</strong> 08:00 - 10:00<br><strong>2da Sección:</strong> 14:00 - 16:00</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏳ Carga Horaria</h4>
+                    <p>6 horas de estudio semanales</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>💻 Modalidad</h4>
+                    <p>Virtual (módulos interactivos, videoconferencias, asignaturas modulares)</p>
+                </div>
+            </div>
 
-                <article class="detail-card">
-                    <h3>🎓 Idiomas Académicos y Preparación de Exámenes</h3>
-                    <p>Programas enfocados en superar con éxito exámenes de certificación internacional (como TOEFL, IELTS, DELE, TestDaF, etc.) para becas y postulaciones universitarias en el extranjero.</p>
-                </article>
+            <div class="curriculum-section">
+                <h3 class="curriculum-title">📍 Malla Curricular (Orden Cronológico)</h3>
+                <div class="curriculum-timeline">
+                    <div class="timeline-step">1. Alphabet & Pronunciation</div>
+                    <div class="timeline-step">2. Pronouns & Nouns</div>
+                    <div class="timeline-step">3. Verbs</div>
+                    <div class="timeline-step">4. Adjectives & Adverbs</div>
+                    <div class="timeline-step">5. Syntax</div>
+                    <div class="timeline-step">6. Grammar Fundamentals</div>
+                    <div class="timeline-step">7. Basic Reading (A1-A2)</div>
+                </div>
+            </div>
 
-                <article class="detail-card">
-                    <h3>🌍 Conversación y Fluidez Cultural</h3>
-                    <p>Cursos interactivos diseñados para ganar confianza al hablar, perfeccionar la pronunciación y comprender los aspectos socioculturales clave de los idiomas más solicitados globalmente.</p>
-                </article>
+            <div class="curriculum-section" style="margin-bottom: 0;">
+                <h3 class="curriculum-title">🔬 Metodología de Aprendizaje</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark);">
+                    Vídeos y ejercicios modulares, sesiones semanales en vivo a través de Google Meets, 30 minutos semanales de práctica conversacional en vivo (Google Meets) con un invitado hablante nativo, diapositivas interactivas, ejercicios de comprensión y asignaturas semanales.
+                </p>
             </div>
         </section>
 
-        <!-- Metodología de aprendizaje -->
-        <section class="process-section">
-            <h2>Nuestra Metodología de Enseñanza</h2>
-            <p style="margin-bottom: 20px; line-height: 1.6;">
-                Nuestros cursos de lenguas extranjeras se adaptan completamente a tu nivel actual y a tus objetivos específicos, utilizando un enfoque práctico y comunicativo:
-            </p>
-            <ul style="list-style-position: inside; margin-bottom: 30px; line-height: 1.8;">
-                <li><strong>Clases Flexibles:</strong> Sesiones presenciales u online en vivo con profesores altamente calificados.</li>
-                <li><strong>Enfoque Práctico:</strong> Nos enfocamos en la producción oral y la comprensión auditiva desde la primera sesión.</li>
-                <li><strong>Grupos Reducidos o Clases Individuales:</strong> Máxima atención personalizada para garantizar un progreso rápido y efectivo.</li>
-                <li><strong>Materiales Relevantes:</strong> Uso de contenidos actuales aplicados a situaciones del mundo real y laboral de hoy en día.</li>
-            </ul>
+        <!-- Panel 2: Curso de Alemán -->
+        <section id="panel-german" class="course-panel">
+            <h2 class="course-title">Curso de Alemán Básico</h2>
+            
+            <div class="course-details-grid">
+                <div class="detail-item-box">
+                    <h4>📅 Días de clases</h4>
+                    <p>Lunes, Miércoles, Viernes</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏰ Horario y Secciones</h4>
+                    <p><strong>1ra Sección:</strong> 08:00 - 10:00<br><strong>2da Sección:</strong> 14:00 - 16:00</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏳ Carga Horaria</h4>
+                    <p>6 horas de estudio semanales</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>💻 Modalidad</h4>
+                    <p>Virtual (módulos interactivos, videoconferencias, asignaturas modulares)</p>
+                </div>
+            </div>
+
+            <div class="curriculum-section">
+                <h3 class="curriculum-title">📍 Malla Curricular (Orden Cronológico)</h3>
+                <div class="curriculum-timeline">
+                    <div class="timeline-step">1. Alphabet & Aussprache</div>
+                    <div class="timeline-step">2. Pronomen & Substantive</div>
+                    <div class="timeline-step">3. Verben</div>
+                    <div class="timeline-step">4. Adjektive und Adverbien</div>
+                    <div class="timeline-step">5. Syntax</div>
+                    <div class="timeline-step">6. Grammatikgrundlagen</div>
+                    <div class="timeline-step">7. Grundlagen des Lesens (A1-A2)</div>
+                </div>
+            </div>
+
+            <div class="curriculum-section" style="margin-bottom: 0;">
+                <h3 class="curriculum-title">🔬 Metodología de Aprendizaje</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark);">
+                    Vídeos y ejercicios modulares, sesiones semanales en vivo a través de Google Meets, 30 minutos semanales de práctica conversacional en vivo (Google Meets) con un invitado hablante nativo, diapositivas interactivas, ejercicios de comprensión y asignaturas semanales.
+                </p>
+            </div>
         </section>
 
-        <!-- Llamado a la Acción (CTA) -->
-        <section class="cta-section">
-            <h2>¿Listo para dominar una nueva lengua?</h2>
-            <p>Escríbenos para agendar una prueba de nivelación gratuita y diseñar un plan de estudios adaptado a tu horario, objetivos e idioma de interés.</p>
-            <a href="mailto:caseslanguages@gmail.com" class="cta-button">Solicitar Información sobre Cursos</a>
+        <!-- Panel 3: Curso de Chino Mandarín -->
+        <section id="panel-chinese" class="course-panel">
+            <h2 class="course-title">Curso de Chino Mandarín Básico</h2>
+            
+            <div class="course-details-grid">
+                <div class="detail-item-box">
+                    <h4>📅 Días de clases</h4>
+                    <p>Lunes, Miércoles, Viernes</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏰ Horario y Secciones</h4>
+                    <p><strong>1ra Sección:</strong> 08:00 - 10:00<br><strong>2da Sección:</strong> 14:00 - 16:00</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏳ Carga Horaria</h4>
+                    <p>6 horas de estudio semanales</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>💻 Modalidad</h4>
+                    <p>Virtual (módulos interactivos, videoconferencias, asignaturas modulares)</p>
+                </div>
+            </div>
+
+            <div class="curriculum-section">
+                <h3 class="curriculum-title">📍 Malla Curricular (Orden Cronológico)</h3>
+                <div class="curriculum-timeline">
+                    <div class="timeline-step">1. Pronunciación Pinyin (拼音发音)</div>
+                    <div class="timeline-step">2. Saludos y Frases Cotidianas (HSK-1级)</div>
+                    <div class="timeline-step">3. Números (数字)</div>
+                    <div class="timeline-step">4. Introducción a los Radicales y Caracteres (汉字介绍)</div>
+                    <div class="timeline-step">5. Lectura y Escritura Básica (写读字)</div>
+                    <div class="timeline-step">6. Introducción a la Cultura China (中国文化介绍)</div>
+                </div>
+            </div>
+
+            <div class="curriculum-section" style="margin-bottom: 0;">
+                <h3 class="curriculum-title">🔬 Metodología de Aprendizaje</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark);">
+                    Vídeos y ejercicios modulares, sesiones semanales en vivo a través de Google Meets, 30 minutos semanales de práctica conversacional en vivo (Google Meets) con un invitado hablante nativo, diapositivas interactivas, ejercicios de comprensión y asignaturas semanales.
+                </p>
+            </div>
         </section>
 
+        <!-- Panel 4: Curso de Guaraní -->
+        <section id="panel-guarani" class="course-panel">
+            <h2 class="course-title">Curso de Guaraní Básico</h2>
+            
+            <div class="course-details-grid">
+                <div class="detail-item-box">
+                    <h4>📅 Días de clases</h4>
+                    <p>Lunes, Miércoles, Viernes</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏰ Horario y Secciones</h4>
+                    <p><strong>1ra Sección:</strong> 08:00 - 10:00<br><strong>2da Sección:</strong> 14:00 - 16:00</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏳ Carga Horaria</h4>
+                    <p>6 horas de estudio semanales</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>💻 Modalidad</h4>
+                    <p>Virtual (módulos interactivos, videoconferencias, asignaturas modulares)</p>
+                </div>
+            </div>
+
+            <div class="curriculum-section">
+                <h3 class="curriculum-title">📍 Malla Curricular (Orden Cronológico)</h3>
+                <div class="curriculum-timeline">
+                    <div class="timeline-step">1. Achegety</div>
+                    <div class="timeline-step">2. Pronunciación</div>
+                    <div class="timeline-step">3. Los Pronombres</div>
+                    <div class="timeline-step">4. El Sustantivo y el Plural</div>
+                    <div class="timeline-step">5. Verbos y Conjugación</div>
+                    <div class="timeline-step">6. Adjetivos y Adverbios</div>
+                    <div class="timeline-step">7. Las posposiciones</div>
+                    <div class="timeline-step">8. La Sintaxis</div>
+                    <div class="timeline-step">9. Lectura y Escritura Básica</div>
+                </div>
+            </div>
+
+            <div class="curriculum-section" style="margin-bottom: 0;">
+                <h3 class="curriculum-title">🔬 Metodología de Aprendizaje</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark);">
+                    Vídeos y ejercicios modulares, sesiones semanales en vivo a través de Google Meets, 30 minutos semanales de práctica conversacional en vivo (Google Meets) con un invitado hablante nativo, diapositivas interactivas, ejercicios de comprensión y asignaturas semanales.
+                </p>
+            </div>
+        </section>
+
+        <!-- Panel 5: Curso de Portugués -->
+        <section id="panel-portuguese" class="course-panel">
+            <h2 class="course-title">Curso de Portugués Básico</h2>
+            
+            <div class="course-details-grid">
+                <div class="detail-item-box">
+                    <h4>📅 Días de clases</h4>
+                    <p>Lunes, Miércoles, Viernes</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏰ Horario y Secciones</h4>
+                    <p><strong>1ra Sección:</strong> 08:00 - 10:00<br><strong>2da Sección:</strong> 14:00 - 16:00</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏳ Carga Horaria</h4>
+                    <p>6 horas de estudio semanales</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>💻 Modalidad</h4>
+                    <p>Virtual (módulos interactivos, videoconferencias, asignaturas modulares)</p>
+                </div>
+            </div>
+
+            <div class="curriculum-section">
+                <h3 class="curriculum-title">📍 Malla Curricular (Orden Cronológico)</h3>
+                <div class="curriculum-timeline">
+                    <div class="timeline-step">1. El alfabeto y pronunciación</div>
+                    <div class="timeline-step">2. Los pronombres y el sustantivo</div>
+                    <div class="timeline-step">3. Los verbos y conjugación</div>
+                    <div class="timeline-step">4. Los adjetivos y adverbios</div>
+                    <div class="timeline-step">5. Las preposiciones</div>
+                    <div class="timeline-step">6. La sintaxis</div>
+                    <div class="timeline-step">7. Fundamentos de Gramática</div>
+                    <div class="timeline-step">8. Lectura y Escritura Básica (A1-A2)</div>
+                </div>
+            </div>
+
+            <div class="curriculum-section" style="margin-bottom: 0;">
+                <h3 class="curriculum-title">🔬 Metodología de Aprendizaje</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark);">
+                    Vídeos y ejercicios modulares, sesiones semanales en vivo a través de Google Meets, 30 minutos semanales de práctica conversacional en vivo (Google Meets) con un invitado hablante nativo, diapositivas interactivas, ejercicios de comprensión y asignaturas semanales.
+                </p>
+            </div>
+        </section>
+
+        <!-- Cuadro de Información Relevante Adicional -->
+        <div class="info-disclaimer-box">
+            <h3>⚠️ Información de Matrícula y Cuotas</h3>
+            <p><strong>Fechas de Pago:</strong> Las tarifas mensuales para cursos de lenguas extranjeras se abonan el <strong>20 de cada mes</strong>.</p>
+            <p><strong>Elección de Horarios:</strong> Los alumnos interesados en matricularse pueden escoger una de las dos secciones horarias (Sección Matutina: 08:00 - 10:00 hrs o Sección Vespertina: 14:00 - 16:00 hrs) de manera definitiva durante el periodo de matrícula oficial.</p>
+        </div>
     </main>
 
-    <!-- ======================================= -->
-    <!-- FOOTER (Idéntico para mantener coherencia) -->
-    <!-- ======================================= -->
     <footer class="site-footer">
         <div class="container footer-content">
             <div>
-                <h4>Contacte con Nosotros</h4>
+                <h4>Cases Language Services</h4>
                 <p>📞 +595 973 793 110</p>
                 <p>📧 caseslanguages@gmail.com</p>
-                <p>Estamos listos para hacer su mensaje universal.</p>
-                <p>&copy; 2024 Cases Language Services. Todos los derechos reservados.</p>
-            </div>
-            <div class="footer-links">
-                <h5>Enlaces Rápidos</h5>
-                <ul>
-                    <li><a href="index.html">Volver al Inicio</a></li>
-                    <li><a href="index.html#cursos-idiomas">Cursos</a></li>
-                    <li><a href="mailto:caseslanguages@gmail.com">Email Directo</a></li>
-                </ul>
+                <p>&copy; 2026 Cases Language Services. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Script para funcionalidad interactiva (como el selector de idiomas) -->
     <script src="script.js"></script>
+    <script>
+        // Lógica de navegación rápida entre los cursos
+        function switchCourse(courseId) {
+            // Desactiva todos los botones
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Oculta todos los paneles de curso
+            document.querySelectorAll('.course-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
 
+            // Activa el botón actual
+            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.textContent.toLowerCase().includes(courseId === 'english' ? 'inglés' : courseId === 'german' ? 'alemán' : courseId === 'chinese' ? 'chino' : courseId === 'guarani' ? 'guaraní' : 'portugués'));
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Muestra el panel seleccionado
+            const targetPanel = document.getElementById(`panel-${courseId}`);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
