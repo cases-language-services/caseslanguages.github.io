@@ -1,1 +1,111 @@
-SITE UNDER CONSTRUCTION... COME BACK LATER.
+<!DOCTYPE html>
+<html lang="gn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cases Language Services | PÁGINA WEB EN CONSTRUCCIÓN... ¡VUELVA PRONTO!</title>
+    <!-- ENLACE CSS: Se añade el enlace a styles.css aquí para cargar los estilos primero -->
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <!-- Estilo ultra-premium integrado exclusivamente para el backdrop de fondo -->
+    <style>
+        .site-backdrop-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vw;
+            height: 85vh;
+            max-width: 1080px;
+            max-height: 1080px;
+            background-image: url('site_logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.09; /* Opacidad ultra baja para un look elegante que no cansa la vista */
+            filter: blur(1px); /* Suaviza los bordes para integrarse al cristal del fondo */
+            pointer-events: none; /* Evita que interfiera con los clics del usuario */
+            z-index: -2; /* Posicionado por detrás de todo el contenido */
+        }
+    </style>
+</head>
+
+<body id="main-body"> <!-- Añadí un ID al body por buenas prácticas -->
+
+    <!-- Elemento del Backdrop Moderno -->
+    <div class="site-backdrop-bg"></div>
+
+    <!-- ======================================= -->
+    <!-- 1. HEADER Y NAVEGACIÓN PRINCIPAL (Semántica Crucial) -->
+    <!-- ======================================= -->
+    <header class="site-header">
+        <div class="logo-and-branding">
+            <!-- Logo Principal -->
+            <img src="site_logo.png" alt="Cases Language Services Logo" class="main-logo">
+            
+            <!-- El Motto/Misión: Primer mensaje para el visitante -->
+            <p class="motto">
+                Mbojoapy kultura ha ñemuha pe ñe'ẽ rupive. Nde socio ñe'ẽkuaambo'e Paraguay pegua.
+            </p>
+        </div>
+
+        <nav class="primary-menu" aria-label="Navegación principal de servicios">
+            <!-- Lista de enlaces basada estrictamente en los 8 puntos solicitados -->
+            <ul>
+                <li><a href="index_gn.html">GRACIAS POR SU VISITA</a></li>
+                <li><a href="index_gn.html">VUELVA PRONTO</a></li>
+            </ul>
+        </nav>
+
+<button class="language-selector-btn" id="openLanguageListBtn" aria-expanded="false" aria-controls="language-list">
+             <span>Idiomas</span> ▼
+</button>
+
+        <!-- Contenedor Oculto/Interactivo para los idiomas (JavaScript lo mostrará) -->
+        <div class="dropdown-content" id="language-list" role="menu" hidden>
+            <a href="index.html" role="menuitem">Español</a>
+            <a href="index_en.html" role="menuitem">English</a>
+            <a href="index_de.html" role="menuitem">Deutsch</a>
+            <a href="index_gn.html" role="menuitem">Avañe'ẽ</a>
+            <a href="index_zh.html" role="menuitem">中文</a>
+            <a href="index_pt.html" role="menuitem">Português</a>
+        </div>
+    </header>
+    <!-- ======================================= -->
+    <!-- SECCIÓN HERO/INTRODUCTORIA (Impacto Visual) -->
+    <!-- ======================================= -->
+    <section class="hero-section container" aria-labelledby="mainHeadline">
+        <h1 id="mainHeadline">PÁGINA WEB EN CONSTRUCCIÓN...</h1>
+        <a href="#contactar" role="button" class="cta-button">¡VUELVA PRONTO!</a>
+    </section>
+
+
+    <!-- ======================================= -->
+    <!-- FOOTER (Información de Contacto) -->
+    <!-- ======================================= -->
+    <footer id="contactar" class="site-footer">
+        <div class="container footer-content">
+            <div>
+                <h4>Contacte con Nosotros</h4>
+                <p>📞 +595 973 793 110</p>
+                <p>📧 caseslanguages@gmail.com</p>
+                <p>Estamos listos para hacer su mensaje universal.</p>
+                <p>&copy; 2024 Cases Language Services. Todos los derechos reservados.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Enlaces Rápidos</h5>
+                <!-- Repetición de enlaces del menú principal para accesibilidad -->
+                <ul>
+                    <li><a href="#traduccion-documentos">Documentación</a></li>
+                    <li><a href="#cursos-idiomas">Cursos</a></li>
+                    <li><a href="mailto:caseslanguages@gmail.com">Email Directo</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+<!-- ENLACE JS: Se añade el script al final del body para garantizar que todos los elementos existen antes de ejecutar la lógica -->
+<script src="script.js"></script>
+
+</body>
+</html>
