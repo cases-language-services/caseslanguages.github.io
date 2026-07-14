@@ -4,15 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLS Academy | Cases Language Services</title>
-    <!-- Enlace a tus estilos globales para mantener la coherencia visual -->
     <link rel="stylesheet" href="styles.css"> 
+    <style>
+        /* Estilos específicos y optimizaciones para el catálogo de capacitación interna */
+        .academy-hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .academy-hero h1 {
+            font-size: 2.5rem;
+            color: var(--color-secondary-blue);
+            margin-bottom: 15px;
+        }
+
+        .academy-hero p {
+            font-size: 1.1rem;
+            color: var(--color-text-dark);
+            line-height: 1.6;
+        }
+
+        .academy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0 60px;
+        }
+
+        /* Variación exclusiva para las tarjetas de la Academia */
+        .academy-card {
+            background: var(--color-surface-base);
+            backdrop-filter: blur(var(--glass-backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--glass-backdrop-blur));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: var(--card-box-shadow);
+            border-radius: var(--border-radius-lg);
+            padding: 35px;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .academy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .academy-card h2 {
+            font-size: 1.4rem;
+            color: var(--color-primary-teal);
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(90, 156, 155, 0.15);
+            padding-bottom: 10px;
+        }
+
+        .role-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .role-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            color: var(--color-text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .role-list li:last-child {
+            border-bottom: none;
+        }
+
+        .role-badge {
+            background: linear-gradient(135deg, var(--color-primary-teal), var(--color-secondary-blue));
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        /* Fondo decorativo de marca */
+        .site-backdrop-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vw;
+            height: 85vh;
+            max-width: 1080px;
+            max-height: 1080px;
+            background-image: url('site_logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.05;
+            filter: blur(1px);
+            pointer-events: none;
+            z-index: -2;
+        }
+    </style>
 </head>
 
 <body id="cls-academy-page">
+    <div class="site-backdrop-bg"></div>
 
-    <!-- ======================================= -->
-    <!-- HEADER Y NAVEGACIÓN (Consistencia de marca) -->
-    <!-- ======================================= -->
     <header class="site-header">
         <div class="logo-and-branding">
             <a href="index.html">
@@ -28,76 +127,64 @@
                 <li><a href="traduccion-documentos.html">Traducción (DOCS)</a></li>
                 <li><a href="traduccion-web.html">Traducción (WEB)</a></li>
                 <li><a href="interprete-conferencias.html">Intérpretes</a></li>
-                <li><a href="transcripcion-documentos.html">Transcripción (DOCS)</a></li>
-                <li><a href="cursos-lenguas-extranjeras.html">Cursos (Lenguas Extranjeras)</a></li>
-                <li><a href="idiomas.html">Idiomas</a></li>
-                <li><a href="cls-academy.html" class="active">CLS Academy</a></li>
-                <li><a href="carreras.html">Carreras</a></li>
+                <li><a href="transcripcion-documentos.html">Transcripción</a></li>
+                <li><a href="index.html" class="cta-button" style="color: white; padding: 8px 16px;">Inicio</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- ======================================= -->
-    <!-- CONTENIDO PRINCIPAL: CLS ACADEMY -->
-    <!-- ======================================= -->
-    <main class="container page-content">
+    <main class="container">
         
-        <!-- Encabezado de la página -->
-        <section class="page-hero">
-            <h1>🎓 CLS Academy</h1>
-            <p class="lead-text">
-                Nuestra plataforma y ecosistema de aprendizaje continuo. Un espacio diseñado para profesionales, estudiantes y apasionados de las lenguas que buscan dominar nuevas herramientas de comunicación en un entorno dinámico y flexible.
+        <section class="academy-hero">
+            <h1>CLS Academy</h1>
+            <p>
+                Bienvenido a nuestro entorno interactivo de adiestramiento profesional. Aquí preparamos, capacitamos y dotamos de herramientas especializadas a los futuros colaboradores que formarán parte activa de nuestro equipo global en Cases Language Services. Explora nuestros itinerarios formativos adaptados a cada vacante disponible.
             </p>
         </section>
 
-        <!-- Detalle de lo que ofrece la Academia -->
-        <section class="services-detail-section">
-            <h2>¿Qué vas a encontrar en CLS Academy?</h2>
+        <div class="academy-grid">
             
-            <div class="details-grid">
-                <article class="detail-card">
-                    <h3>💻 Aula Virtual Interactiva</h3>
-                    <p>Acceso las 24 horas, los 7 días de la semana a recursos de estudio exclusivos, actividades multimedia, ejercicios de autoevaluación y material de apoyo diseñado por lingüistas profesionales.</p>
-                </article>
+            <section class="academy-card">
+                <h2>📦 Módulos de Carreras Esenciales</h2>
+                <p style="font-size: 0.88rem; color: #7f8c8d; margin-bottom: 15px;">Programas base de integración técnica y atención para el funcionamiento operativo institucional.</p>
+                <ul class="role-list">
+                    <li><span class="role-badge"></span> Área de Secretariado Profesional</li>
+                    <li><span class="role-badge"></span> Gestión y Procesos de Tesorería</li>
+                    <li><span class="role-badge"></span> Representantes de Marca y Atención al Cliente</li>
+                </ul>
+            </section>
 
-                <article class="detail-card">
-                    <h3>👥 Talleres y Webinars en Vivo</h3>
-                    <p>Sesiones periódicas de inmersión lingüística y cultural dirigidas por instructores nativos, donde se abordan modismos, terminología especializada y preparación para situaciones reales del ámbito corporativo.</p>
-                </article>
+            <section class="academy-card">
+                <h2>🎓 Módulos de Carreras Especializadas</h2>
+                <p style="font-size: 0.88rem; color: #7f8c8d; margin-bottom: 15px;">Entrenamiento técnico avanzado enfocado en la excelencia de nuestros servicios lingüísticos globales.</p>
+                <ul class="role-list">
+                    <li><span class="role-badge"></span> Traducción Técnica y Jurada de Documentos</li>
+                    <li><span class="role-badge"></span> Localización y Traducción de Páginas Web</li>
+                    <li><span class="role-badge"></span> Técnicas de Interpretación de Conferencias (Simultánea/Consecutiva)</li>
+                    <li><span class="role-badge"></span> Transcripción Avanzada de Audio y Video a Documentos</li>
+                    <li><span class="role-badge"></span> Metodología y Docencia de Lenguas Extranjeras</li>
+                </ul>
+            </section>
 
-                <article class="detail-card">
-                    <h3>📊 Seguimiento de Progreso Personalizado</h3>
-                    <p>Un sistema de acompañamiento en el que instructores asignados evalúan tus avances, corrigen trabajos y te guían para alcanzar tus objetivos de comunicación con confianza.</p>
-                </article>
-            </div>
-        </section>
+            <section class="academy-card">
+                <h2>💼 Módulos de Carreras Administrativas</h2>
+                <p style="font-size: 0.88rem; color: #7f8c8d; margin-bottom: 15px;">Formación en liderazgo, control de calidad corporativo y toma de decisiones estratégicas.</p>
+                <ul class="role-list">
+                    <li><span class="role-badge"></span> Supervisión de Equipos y Control de Calidad</li>
+                    <li><span class="role-badge"></span> Dirección Estratégica y Gestión Corporativa</li>
+                </ul>
+            </section>
 
-        <!-- Ventajas de la plataforma -->
-        <section class="process-section">
-            <h2>¿Por qué elegir nuestra metodología digital?</h2>
-            <p style="margin-bottom: 20px; line-height: 1.6;">
-                CLS Academy combina lo mejor de la tecnología con el enfoque humano y profesional de Cases Language Services:
-            </p>
-            <ul style="list-style-position: inside; margin-bottom: 30px; line-height: 1.8;">
-                <li><strong>Flexibilidad total de horarios:</strong> Diseñado para adaptarse al ritmo de vida de profesionales en activo.</li>
-                <li><strong>Contenido actualizado:</strong> Casos prácticos, documentos reales del ámbito empresarial y simulaciones conversacionales de la vida diaria.</li>
-                <li><strong>Certificaciones oficiales:</strong> Obtén constancias de participación que validen tus horas de preparación y tus logros alcanzados.</li>
-                <li><strong>Comunidad global:</strong> Conéctate y practica con otros estudiantes que comparten tu mismo interés por expandir sus fronteras lingüísticas.</li>
-            </ul>
-        </section>
+        </div>
 
-        <!-- Llamado a la Acción (CTA) -->
-        <section class="cta-section">
-            <h2>¿Listo para llevar tus habilidades al siguiente nivel?</h2>
-            <p>Escríbenos para conocer los cursos activos, los requisitos de ingreso y solicitar tu acceso demo a la plataforma CLS Academy.</p>
-            <a href="mailto:caseslanguages@gmail.com" class="cta-button">Quiero unirme a CLS Academy</a>
+        <section class="service-card" style="text-align: center; margin-bottom: 60px;">
+            <h2>🚀 ¿Estás listo para iniciar tu proceso formativo?</h2>
+            <p>Si eres un postulante preseleccionado o deseas solicitar tu acceso demo a los módulos asignados para tu vacante laboral, ponte en comunicación directa con nuestro departamento de recursos humanos.</p>
+            <a href="mailto:caseslanguages@gmail.com" class="cta-button" style="display: inline-block; margin-top: 15px;">Solicitar Acceso Corporativo</a>
         </section>
 
     </main>
 
-    <!-- ======================================= -->
-    <!-- FOOTER (Idéntico para mantener coherencia) -->
-    <!-- ======================================= -->
     <footer class="site-footer">
         <div class="container footer-content">
             <div>
@@ -105,21 +192,18 @@
                 <p>📞 +595 973 793 110</p>
                 <p>📧 caseslanguages@gmail.com</p>
                 <p>Estamos listos para hacer su mensaje universal.</p>
-                <p>&copy; 2024 Cases Language Services. Todos los derechos reservados.</p>
+                <p>&copy; 2026 Cases Language Services. Todos los derechos reservados.</p>
             </div>
             <div class="footer-links">
                 <h5>Enlaces Rápidos</h5>
                 <ul>
                     <li><a href="index.html">Volver al Inicio</a></li>
-                    <li><a href="index.html#cursos-idiomas">Cursos</a></li>
                     <li><a href="mailto:caseslanguages@gmail.com">Email Directo</a></li>
                 </ul>
             </div>
         </div>
     </footer>
 
-    <!-- Script para funcionalidad interactiva (como el selector de idiomas) -->
     <script src="script.js"></script>
-
 </body>
 </html>
