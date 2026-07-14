@@ -6,9 +6,34 @@
     <title>Cases Language Services | Su Puente Lingüístico en Paraguay</title>
     <!-- ENLACE CSS: Se añade el enlace a styles.css aquí para cargar los estilos primero -->
     <link rel="stylesheet" href="styles.css"> 
+    
+    <!-- Estilo ultra-premium integrado exclusivamente para el backdrop de fondo -->
+    <style>
+        .site-backdrop-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vw;
+            height: 85vh;
+            max-width: 1080px;
+            max-height: 1080px;
+            background-image: url('site_logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.09; /* Opacidad ultra baja para un look elegante que no cansa la vista */
+            filter: blur(1px); /* Suaviza los bordes para integrarse al cristal del fondo */
+            pointer-events: none; /* Evita que interfiera con los clics del usuario */
+            z-index: -2; /* Posicionado por detrás de todo el contenido */
+        }
+    </style>
 </head>
 
 <body id="main-body"> <!-- Añadí un ID al body por buenas prácticas -->
+
+    <!-- Elemento del Backdrop Moderno -->
+    <div class="site-backdrop-bg"></div>
 
     <!-- ======================================= -->
     <!-- 1. HEADER Y NAVEGACIÓN PRINCIPAL (Semántica Crucial) -->
@@ -27,14 +52,14 @@
         <nav class="primary-menu" aria-label="Navegación principal de servicios">
             <!-- Lista de enlaces basada estrictamente en los 8 puntos solicitados -->
             <ul>
-                <li><a href="#traduccion-documentos">Traducción de Documentos</a></li>
-                <li><a href="#traduccion-web">Traducción Web</a></li>
-                <li><a href="#interprete-conferencias">Intérprete en Conferencias</a></li>
-                <li><a href="#transcripcion">Transcripción de Documentos</a></li>
-                <li><a href="#cursos-idiomas">Cursos de Lenguas Extranjeras</a></li>
-                <li><a href="#idiomas">Idiomas</a></li>
-                <li><a href="#cls-academy">CLS Academy</a></li>
-                <li><a href="#carreras">Carreras</a></li>
+                <li><a href="traduccion-documentos.html">Traducción (DOCS)</a></li>
+                <li><a href="traduccion-web.html">Traducción (WEB)</a></li>
+                <li><a href="interprete-conferencias.html">Intérpretes</a></li>
+                <li><a href="transcripcion-documentos.html">Transcripción (DOCS)</a></li>
+                <li><a href="cursos-lenguas-extranjeras.html">Cursos (Lenguas Extranjeras)</a></li>
+                <li><a href="idiomas.html">Idiomas</a></li>
+                <li><a href="cls-academy.html">CLS Academy</a></li>
+                <li><a href="carreras.html">Carreras</a></li>
             </ul>
         </nav>
 
@@ -45,11 +70,12 @@
 
         <!-- Contenedor Oculto/Interactivo para los idiomas (JavaScript lo mostrará) -->
         <div class="dropdown-content" id="language-list" role="menu" hidden>
-            <a href="#" role="menuitem">English</a>
-            <a href="#" role="menuitem">Deutsch</a>
-            <a href="#" role="menuitem">Avañe'ẽ</a>
-            <a href="#" role="menuitem">中文</a>
-            <a href="#" role="menuitem">Português</a>
+            <a href="index.html" role="menuitem">Español</a>
+            <a href="index_en.html" role="menuitem">English</a>
+            <a href="index_de.html" role="menuitem">Deutsch</a>
+            <a href="index_gn.html" role="menuitem">Avañe'ẽ</a>
+            <a href="index_zh.html" role="menuitem">中文</a>
+            <a href="index_pt.html" role="menuitem">Português</a>
         </div>
 
     </header>
@@ -58,7 +84,7 @@
     <!-- SECCIÓN HERO/INTRODUCTORIA (Impacto Visual) -->
     <!-- ======================================= -->
     <section class="hero-section container" aria-labelledby="mainHeadline">
-        <h1 id="mainHeadline">Tu Ventana Global a Paraguay</h1 >
+        <h1 id="mainHeadline">Tu Ventana Global a Paraguay</h1>
         <p class="subtitle-motto">
             Cases Language Services garantiza comunicación impecable para residentes y empresas que buscan crecer en el mercado paraguayo.
         </p>
