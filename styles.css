@@ -94,7 +94,7 @@ body {
 }
 
 .main-logo {
-    max-height: 45px;
+    max-height: 100px;
     display: block;
     margin-bottom: 6px;
     transition: transform var(--transition-speed);
