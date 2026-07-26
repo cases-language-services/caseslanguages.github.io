@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foreign Language Courses | Cases Language Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos y optimizaciones premium para la sección de Cursos */
+        .courses-layout {
+            margin: 60px auto;
+            max-width: 1000px;
+        }
+
+        .courses-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .courses-intro h1 {
+            color: var(--color-secondary-blue);
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+        }
+
+        /* Selector de Cursos (Tabs) de alto rendimiento */
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 12px 24px;
+            border-radius: var(--border-radius-md);
+            color: var(--color-text-dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            backdrop-filter: blur(var(--glass-backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--glass-backdrop-blur));
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--color-primary-teal);
+            color: #ffffff;
+            border-color: var(--color-primary-teal);
+            box-shadow: 0 4px 15px rgba(90, 156, 155, 0.3);
+        }
+
+        /* Contenido del Curso */
+        .course-panel {
+            display: none; /* Controlado dinámicamente por JS */
+            background: var(--color-surface-base);
+            backdrop-filter: blur(var(--glass-backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--glass-backdrop-blur));
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: var(--border-radius-lg);
+            padding: 40px;
+            box-shadow: var(--card-box-shadow);
+            animation: panelFadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .course-panel.active {
+            display: block;
+        }
+
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .course-title {
+            color: var(--color-secondary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(90, 156, 155, 0.15);
+            padding-bottom: 10px;
+        }
+
+        /* Grid de Detalles Técnicos del Curso */
+        .course-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .detail-item-box {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--border-radius-md);
+            padding: 20px;
+        }
+
+        .detail-item-box h4 {
+            color: var(--color-primary-teal);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-item-box p {
+            font-size: 1rem;
+            color: var(--color-text-dark);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Estructura de la Malla Curricular Cronológica */
+        .curriculum-section {
+            margin-bottom: 40px;
+        }
+
+        .curriculum-title {
+            font-size: 1.3rem;
+            color: var(--color-secondary-blue);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .curriculum-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid rgba(90, 156, 155, 0.2);
+        }
+
+        .timeline-step {
+            position: relative;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            transition: transform var(--transition-speed);
+        }
+
+        .timeline-step:hover {
+            transform: translateX(5px);
+            background: #ffffff;
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--color-primary-teal);
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        /* Sección Informativa Importante */
+        .info-disclaimer-box {
+            background: linear-gradient(135deg, rgba(90, 156, 155, 0.08), rgba(41, 128, 185, 0.08));
+            border: 1px solid rgba(90, 156, 155, 0.2);
+            border-radius: var(--border-radius-md);
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        .info-disclaimer-box h3 {
+            color: var(--color-secondary-blue);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-disclaimer-box p {
+            font-size: 0.9rem;
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            margin: 0 0 10px 0;
+        }
+
+        .info-disclaimer-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Fondo decorativo */
+        .site-backdrop-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vw;
+            height: 85vh;
+            max-width: 1080px;
+            max-height: 1080px;
+            background-image: url('site_logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.05;
+            filter: blur(1px);
+            pointer-events: none;
+            z-index: -2;
+        }
+    </style>
+</head>
+<body id="main-body">
+    <div class="site-backdrop-bg"></div>
+
+    <header class="site-header">
+        <div class="logo-and-branding">
+            <a href="index_en.html" style="text-decoration: none;">
+                <img src="site_logo.png" alt="Cases Language Services Logo" class="main-logo">
+            </a>
+            <p class="motto">
+                Connecting cultures and businesses through language. Your language partner in Paraguay.
+            </p>
+        </div>
+        <a href="index_en.html" class="cta-button" style="padding: 10px 25px; font-size: 0.9rem;">Back to Home</a>
+    </header>
+
+    <main class="container courses-layout">
+        <div class="courses-intro">
+            <h1>Foreign Language Courses</h1>
+            <p>Advanced linguistic training under virtual methodologies of high academic performance.</p>
+        </div>
+
+        <!-- Selector Interactivo de Cursos -->
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="switchCourse('english')">🇺🇸 Basic English</button>
+            <button class="tab-btn" onclick="switchCourse('german')">🇩🇪 Basic German</button>
+            <button class="tab-btn" onclick="switchCourse('chinese')">🇨🇳 Basic Mandarin Chinese</button>
+            <button class="tab-btn" onclick="switchCourse('guarani')">🇵🇾 Basic Guarani</button>
+            <button class="tab-btn" onclick="switchCourse('portuguese')">🇧🇷 Basic Portuguese</button>
+        </div>
+
+        <!-- Panel 1: Curso de Inglés -->
+        <section id="panel-english" class="course-panel active">
+            <h2 class="course-title">Basic English Course</h2>
+
+            <div class="course-details-grid">
+                <div class="detail-item-box">
+                    <h4>📅 Class Days</h4>
+                    <p>Monday, Wednesday, Friday</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏰ Schedule and Sections</h4>
+                    <p><strong>1st Section:</strong> 08:00 - 10:00<br><strong>2nd Section:</strong> 14:00 - 16:00</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏳ Weekly Study Load</h4>
+                    <p>6 hours of study per week</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>💻 Delivery Mode</h4>
+                    <p>Online (interactive modules, video conferences, modular subjects)</p>
+                </div>
+            </div>
+
+            <div class="curriculum-section">
+                <h3 class="curriculum-title">📍 Curriculum (Chronological Order)</h3>
+                <div class="curriculum-timeline">
+                    <div class="timeline-step">1. Alphabet & Pronunciation</div>
+                    <div class="timeline-step">2. Pronouns & Nouns</div>
+                    <div class="timeline-step">3. Verbs</div>
+                    <div class="timeline-step">4. Adjectives & Adverbs</div>
+                    <div class="timeline-step">5. Syntax</div>
+                    <div class="timeline-step">6. Grammar Fundamentals</div>
+                    <div class="timeline-step">7. Basic Reading (A1-A2)</div>
+                </div>
+            </div>
+
+            <div class="curriculum-section" style="margin-bottom: 0;">
+                <h3 class="curriculum-title">🔬 Learning Methodology</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark);">
+                    Modular videos and exercises, weekly live sessions via Google Meets, 30 minutes of weekly live conversational practice (Google Meets) with a native-speaking guest, interactive slides, comprehension exercises, and weekly subjects.
+                </p>
+            </div>
+        </section>
+
+        <!-- Panel 2: Curso de Alemán -->
+        <section id="panel-german" class="course-panel">
+            <h2 class="course-title">Basic German Course</h2>
+            
+            <div class="course-details-grid">
+                <div class="detail-item-box">
+                    <h4>📅 Class Days</h4>
+                    <p>Monday, Wednesday, Friday</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏰ Schedule and Sections</h4>
+                    <p><strong>1st Section:</strong> 08:00 - 10:00<br><strong>2nd Section:</strong> 14:00 - 16:00</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏳ Weekly Study Load</h4>
+                    <p>6 hours of study per week</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>💻 Delivery Mode</h4>
+                    <p>Virtual (interactive modules, videoconferences, modular subjects)</p>
+                </div>
+            </div>
+
+            <div class="curriculum-section">
+                <h3 class="curriculum-title">📍 Curriculum (Chronological Order)</h3>
+                <div class="curriculum-timeline">
+                    <div class="timeline-step">1. Alphabet & Aussprache</div>
+                    <div class="timeline-step">2. Pronomen & Substantive</div>
+                    <div class="timeline-step">3. Verben</div>
+                    <div class="timeline-step">4. Adjektive und Adverbien</div>
+                    <div class="timeline-step">5. Syntax</div>
+                    <div class="timeline-step">6. Grammatikgrundlagen</div>
+                    <div class="timeline-step">7. Grundlagen des Lesens (A1-A2)</div>
+                </div>
+            </div>
+
+            <div class="curriculum-section" style="margin-bottom: 0;">
+                <h3 class="curriculum-title">🔬 Learning Methodology</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark);">
+                    Videos and modular exercises, weekly live sessions via Google Meets, 30 minutes of weekly conversational practice (Google Meets) with a native speaker guest, interactive slides, comprehension exercises, and weekly subjects.
+                </p>
+            </div>
+        </section>
+
+        <!-- Panel 3: Basic Mandarin Chinese Course -->
+        <section id="panel-chinese" class="course-panel">
+            <h2 class="course-title">Basic Mandarin Chinese Course</h2>
+            
+            <div class="course-details-grid">
+                <div class="detail-item-box">
+                    <h4>📅 Class Days</h4>
+                    <p>Monday, Wednesday, Friday</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏰ Schedule and Sections</h4>
+                    <p><strong>1st Section:</strong> 08:00 - 10:00<br><strong>2nd Section:</strong> 14:00 - 16:00</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏳ Weekly Study Load</h4>
+                    <p>6 hours of weekly study</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>💻 Delivery Mode</h4>
+                    <p>Virtual (interactive modules, video conferences, modular subjects)</p>
+                </div>
+            </div>
+
+            <div class="curriculum-section">
+                <h3 class="curriculum-title">📍 Curriculum (Chronological Order)</h3>
+                <div class="curriculum-timeline">
+                    <div class="timeline-step">1. Pinyin Pronunciation (拼音发音)</div>
+                    <div class="timeline-step">2. Greetings and Daily Phrases (HSK-1级)</div>
+                    <div class="timeline-step">3. Numbers (数字)</div>
+                    <div class="timeline-step">4. Introduction to Radicals and Characters (汉字介绍)</div>
+                    <div class="timeline-step">5. Basic Reading and Writing (写读字)</div>
+                    <div class="timeline-step">6. Introduction to Chinese Culture (中国文化介绍)</div>
+                </div>
+            </div>
+
+            <div class="curriculum-section" style="margin-bottom: 0;">
+                <h3 class="curriculum-title">🔬 Learning Methodology</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark);">
+                    Modular videos and exercises, weekly live sessions through Google Meets, 30 minutes weekly of live conversational practice (Google Meets) with a native speaker guest, interactive slides, comprehension exercises, and weekly assignments.
+                </p>
+            </div>
+        </section>
+
+        <!-- Panel 4: Curso de Guaraní -->
+        <section id="panel-guarani" class="course-panel">
+            <h2 class="course-title">Basic Guarani Course</h2>
+            
+            <div class="course-details-grid">
+                <div class="detail-item-box">
+                    <h4>📅 Class Days</h4>
+                    <p>Monday, Wednesday, Friday</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏰ Schedule and Sections</h4>
+                    <p><strong>1st Section:</strong> 08:00 - 10:00<br><strong>2nd Section:</strong> 14:00 - 16:00</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏳ Weekly Study Load</h4>
+                    <p>6 hours of weekly study</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>💻 Delivery Mode</h4>
+                    <p>Virtual (interactive modules, video conferences, modular subjects)</p>
+                </div>
+            </div>
+
+            <div class="curriculum-section">
+                <h3 class="curriculum-title">📍 Curriculum (Chronological Order)</h3>
+                <div class="curriculum-timeline">
+                    <div class="timeline-step">1. Achegety</div>
+                    <div class="timeline-step">2. Pronunciation</div>
+                    <div class="timeline-step">3. Pronouns</div>
+                    <div class="timeline-step">4. The Noun and the Plural</div>
+                    <div class="timeline-step">5. Verbs and Conjugation</div>
+                    <div class="timeline-step">6. Adjectives and Adverbs</div>
+                    <div class="timeline-step">7. Postpositions</div>
+                    <div class="timeline-step">8. Syntax</div>
+                    <div class="timeline-step">9. Basic Reading and Writing</div>
+                </div>
+            </div>
+
+            <div class="curriculum-section" style="margin-bottom: 0;">
+                <h3 class="curriculum-title">🔬 Learning Methodology</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark);">
+                    Interactive videos and exercises, weekly live sessions via Google Meets, 30 minutes of weekly conversational practice (Google Meets) with a native speaker guest, interactive slides, comprehension exercises, and weekly subjects.
+                </p>
+            </div>
+        </section>
+
+        <!-- Panel 5: Curso de Portugués -->
+        <section id="panel-portuguese" class="course-panel">
+            <h2 class="course-title">Basic Portuguese Course</h2>
+            
+            <div class="course-details-grid">
+                <div class="detail-item-box">
+                    <h4>📅 Class Days</h4>
+                    <p>Monday, Wednesday, Friday</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏰ Schedule and Sections</h4>
+                    <p><strong>1st Section:</strong> 08:00 - 10:00<br><strong>2nd Section:</strong> 14:00 - 16:00</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>⏳ Weekly Study Load</h4>
+                    <p>6 hours of weekly study</p>
+                </div>
+                <div class="detail-item-box">
+                    <h4>💻 Delivery Mode</h4>
+                    <p>Virtual (interactive modules, video conferences, modular subjects)</p>
+                </div>
+            </div>
+
+            <div class="curriculum-section">
+                <h3 class="curriculum-title">📍 Curriculum (Chronological Order)</h3>
+                <div class="curriculum-timeline">
+                    <div class="timeline-step">1. The Alphabet and Pronunciation</div>
+                    <div class="timeline-step">2. Pronouns and Nouns</div>
+                    <div class="timeline-step">3. Verbs and Conjugation</div>
+                    <div class="timeline-step">4. Adjectives and Adverbs</div>
+                    <div class="timeline-step">5. Prepositions</div>
+                    <div class="timeline-step">6. Syntax</div>
+                    <div class="timeline-step">7. Fundamentals of Grammar</div>
+                    <div class="timeline-step">8. Basic Reading and Writing (A1-A2)</div>
+                </div>
+            </div>
+
+            <div class="curriculum-section" style="margin-bottom: 0;">
+                <h3 class="curriculum-title">🔬 Learning Methodology</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark);">
+                    Interactive videos and exercises, weekly live sessions via Google Meets, 30 minutes of weekly conversational practice (Google Meets) with a native speaker guest, interactive slides, comprehension exercises, and weekly subjects.
+                </p>
+            </div>
+        </section>
+
+        <!-- Cuadro de Información Relevante Adicional -->
+        <div class="info-disclaimer-box">
+            <h3>⚠️ Enrollment and Tuition Information</h3>
+            <p><strong>Payment Dates:</strong> Monthly fees for foreign language courses are paid on the <strong>20th of each month</strong>.</p>
+            <p><strong>Choice of Schedules:</strong> Students interested in enrolling can choose one of the two time slots (Morning Section: 08:00 - 10:00 hrs or Afternoon Section: 14:00 - 16:00 hrs) definitively during the official enrollment period.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div>
+                <h4>Cases Language Services</h4>
+                <p>📞 +595 973 793 110</p>
+                <p>📧 caseslanguages@gmail.com</p>
+                <p>&copy; 2026 Cases Language Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Lógica de navegación rápida entre los cursos
+        function switchCourse(courseId) {
+            // Desactiva todos los botones
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Oculta todos los paneles de curso
+            document.querySelectorAll('.course-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+
+            // Activa el botón actual
+            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.textContent.toLowerCase().includes(courseId === 'english' ? 'inglés' : courseId === 'german' ? 'alemán' : courseId === 'chinese' ? 'chino' : courseId === 'guarani' ? 'guaraní' : 'portugués'));
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Muestra el panel seleccionado
+            const targetPanel = document.getElementById(`panel-${courseId}`);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
